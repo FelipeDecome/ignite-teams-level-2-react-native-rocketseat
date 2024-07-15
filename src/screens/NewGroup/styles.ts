@@ -12,6 +12,7 @@ export const Content = styled.View`
   justify-content: center;
 `;
 
+
 export const Icon = styled(UsersThree).attrs(({ theme }) => ({
   size: 56,
   color: theme.colors.green["700"],

@@ -4,7 +4,7 @@ export const Container = styled.View`
   gap: 4px;
 
   width: 100%;
-  margin: 32px 0;
+  padding: 24px 0 32px;
 `;
 
 export const Title = styled.Text`
