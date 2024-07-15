@@ -4,6 +4,7 @@ import { GroupCard } from '@components/GroupCard';
 import { Header } from '@components/Header';
 import { Heading } from '@components/Heading';
 
+import { Button } from '@components/Button';
 import { ListEmpty } from '@components/ListEmpty';
 import { FlatList, Text } from 'react-native';
 import { Container } from './styles';
@@ -34,6 +35,7 @@ export function Groups() {
   return (
     <Container>
       <Header />
+
       <Heading title="Turmas" subtitle="jogue com a sua turma" />
 
       <FlatList
@@ -55,6 +57,10 @@ export function Groups() {
         )}
         showsVerticalScrollIndicator={false}
         />
+
+        <Button>
+          Criar nova turma
+        </Button>
     </Container>
   );
 }
