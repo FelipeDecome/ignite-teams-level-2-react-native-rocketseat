@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.TextInput`
+export const Container = styled.TextInput.attrs(({ theme }) => ({
+  placeholderTextColor: theme.colors.gray["300"],
+}))`
   flex: 1;
 
   min-height: 56px;
