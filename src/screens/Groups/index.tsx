@@ -1,24 +1,16 @@
 import { useState } from 'react';
+import { FlatList } from 'react-native';
 
+import { Button } from '@components/Button';
 import { GroupCard } from '@components/GroupCard';
 import { Header } from '@components/Header';
 import { Heading } from '@components/Heading';
-
-import { Button } from '@components/Button';
 import { ListEmpty } from '@components/ListEmpty';
-import { FlatList, Text } from 'react-native';
+
 import { Container } from './styles';
 
 type Group = {
   title: string;
-}
-
-function ListEmptyComponent() {
-  return (
-    <Text>
-
-    </Text>
-  );
 }
 
 export function Groups() {
@@ -42,6 +34,7 @@ export function Groups() {
         contentContainerStyle={{
           gap: 12,
           flex: groups.length === 0 ? 1 : undefined,
+          paddingBottom: 32,
         }}
         data={groups}
         keyExtractor={(item) => item.title}
