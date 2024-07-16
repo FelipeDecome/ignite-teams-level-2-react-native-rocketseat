@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -15,4 +15,21 @@ export const Form = styled.View`
   gap: 8px;
 
   border-radius: 6px;
+`;
+
+export const HeaderList = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+
+  margin: 32px 0 24px;
+`;
+
+export const NumberOfPlayers = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray["200"]};
+    font-size: ${theme.font.size.sm}px;
+    font-family: ${theme.font.family.bold};
+  `};
 `;
