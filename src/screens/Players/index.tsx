@@ -6,6 +6,7 @@ import { Header } from "@components/Header";
 import { Heading } from "@components/Heading";
 import { IconButton } from "@components/IconButton";
 import { Input } from "@components/Input";
+import { PlayerCard } from "@components/PlayerCard";
 
 import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
 
@@ -16,7 +17,10 @@ const FILTERS = [
 
 export function Players() {
   const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
-  const [players, setPlayers] = useState<string[]>([]);
+  const [players, setPlayers] = useState<string[]>([
+    'Jogador 1',
+    'Jogador 2',
+  ]);
 
   return (
     <Container>
@@ -60,6 +64,20 @@ export function Players() {
           {players.length}
         </NumberOfPlayers>
       </HeaderList>
+
+      <FlatList
+        data={players}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <PlayerCard
+            name={item}
+            onRemove={() => { }}
+          />
+        )}
+        contentContainerStyle={{
+          gap: 16,
+        }}
+      />
     </Container>
   );
 }
