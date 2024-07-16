@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { FlatList } from "react-native";
 
@@ -9,34 +10,33 @@ import { IconButton } from "@components/IconButton";
 import { Input } from "@components/Input";
 import { ListEmpty } from "@components/ListEmpty";
 import { PlayerCard } from "@components/PlayerCard";
+import { DefaultLayout } from "@layouts/DefaultLayout";
 
-import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
+import { Form, HeaderList, NumberOfPlayers } from "./styles";
 
 const FILTERS = [
   "Time A",
   "Time B",
 ];
 
+type RouteParams = {
+  group: string;
+};
+
 export function Players() {
   const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
-  const [players, setPlayers] = useState<string[]>([
-    'Jogador 1',
-    'Jogador 2',
-    'Jogador 3',
-    'Jogador 4',
-    'Jogador 5',
-    'Jogador 6',
-    'Jogador 7',
-    'Jogador 8',
-  ]);
+  const [players, setPlayers] = useState<string[]>([]);
+
+  const route = useRoute();
+  const { group } = route.params as RouteParams;
 
   return (
-    <Container>
+    <DefaultLayout>
       <Header showBackButton />
 
       <Heading
         subtitle="adicione a galera e separe os times"
-        title="Nome da turma"
+        title={group}
       />
 
       <Form>
@@ -97,6 +97,6 @@ export function Players() {
       <Button type="secondary">
         Remover Turma
       </Button>
-    </Container>
+    </DefaultLayout>
   );
 }

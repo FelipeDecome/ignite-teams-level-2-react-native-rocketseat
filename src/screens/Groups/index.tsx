@@ -7,8 +7,8 @@ import { GroupCard } from '@components/GroupCard';
 import { Header } from '@components/Header';
 import { Heading } from '@components/Heading';
 import { ListEmpty } from '@components/ListEmpty';
+import { DefaultLayout } from '@layouts/DefaultLayout';
 
-import { Container } from './styles';
 
 type Group = {
   title: string;
@@ -31,7 +31,7 @@ export function Groups() {
   }
 
   return (
-    <Container>
+    <DefaultLayout>
       <Header />
 
       <Heading title="Turmas" subtitle="jogue com a sua turma" />
@@ -62,7 +62,7 @@ export function Groups() {
         >
           Criar nova turma
         </Button>
-    </Container>
+    </DefaultLayout>
   );
 }
 
