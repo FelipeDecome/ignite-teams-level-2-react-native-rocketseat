@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 
@@ -23,6 +24,11 @@ export function Groups() {
     { title: "Clube do Livro" },
     { title: "Amigos da Praia" },
   ]);
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate("new");
+  }
 
   return (
     <Container>
@@ -51,7 +57,9 @@ export function Groups() {
         showsVerticalScrollIndicator={false}
         />
 
-        <Button>
+        <Button
+          onPress={handleNewGroup}
+        >
           Criar nova turma
         </Button>
     </Container>
