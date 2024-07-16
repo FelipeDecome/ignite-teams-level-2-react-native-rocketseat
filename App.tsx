@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 
 import { Loading } from '@components/Loading';
-import { NewGroup } from '@screens/NewGroup';
+import { Players } from '@screens/Players';
 import { theme } from '@theme/index';
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {isLoaded ? <NewGroup /> : <Loading />}
+      {isLoaded ? <Players /> : <Loading />}
       <StatusBar
         barStyle="light-content"
         backgroundColor={'transparent'}
