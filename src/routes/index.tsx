@@ -9,6 +9,7 @@ export function Routes() {
 
   return (
     <View style={{
+      flex: 1,
       backgroundColor: theme.colors.gray["600"],
     }}>
       <NavigationContainer>

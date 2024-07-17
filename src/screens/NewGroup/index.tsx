@@ -6,6 +6,7 @@ import { Header } from "@components/Header";
 import { Heading } from "@components/Heading";
 import { Input } from "@components/Input";
 import { DefaultLayout } from "@layouts/DefaultLayout";
+import { createGroup } from "@storage/group/create";
 
 import { Content, Icon } from "./styles";
 
@@ -13,10 +14,19 @@ export function NewGroup() {
   const [group, setGroup] = useState("");
   const navigation = useNavigation();
 
-  function handleCreateGroup() {
-    navigation.navigate("players", {
-      group,
-    });
+  async function handleCreateGroup() {
+    try {
+      if(!group) return;
+      const parsedGroup = group.trim();
+
+      await createGroup(parsedGroup);
+
+      navigation.navigate("players", {
+        group: parsedGroup,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

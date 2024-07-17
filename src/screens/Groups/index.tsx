@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { Button } from '@components/Button';
@@ -8,27 +8,29 @@ import { Header } from '@components/Header';
 import { Heading } from '@components/Heading';
 import { ListEmpty } from '@components/ListEmpty';
 import { DefaultLayout } from '@layouts/DefaultLayout';
-
-
-type Group = {
-  title: string;
-}
+import { findAllGroups } from '@storage/group/findAll';
 
 export function Groups() {
-  const [groups, setGroups] = useState<Group[]>([
-    { title: "Amigos do Colégio" },
-    { title: "Família" },
-    { title: "Amigos da Faculdade" },
-    { title: "Grupo do Futebol" },
-    { title: "Gamer Friends" },
-    { title: "Clube do Livro" },
-    { title: "Amigos da Praia" },
-  ]);
+  const [groups, setGroups] = useState<string[]>([]);
   const navigation = useNavigation();
 
   function handleNewGroup() {
     navigation.navigate("new");
   }
+
+  async function fetchGroups() {
+    try {
+      const groups = await findAllGroups();
+
+      setGroups(groups);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+    fetchGroups();
+  }, []));
 
   return (
     <DefaultLayout>
@@ -43,7 +45,7 @@ export function Groups() {
           paddingBottom: 32,
         }}
         data={groups}
-        keyExtractor={(item) => item.title}
+        keyExtractor={(item) => item}
         ListEmptyComponent={() =>
           <ListEmpty
             message="Que tal cadastrar a primeira turma?"
@@ -51,7 +53,7 @@ export function Groups() {
         }
         renderItem={({ item }) => (
           <GroupCard
-            title={item.title}
+            title={item}
           />
         )}
         showsVerticalScrollIndicator={false}
