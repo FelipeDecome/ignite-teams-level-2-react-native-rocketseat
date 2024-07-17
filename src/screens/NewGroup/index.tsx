@@ -8,6 +8,8 @@ import { Input } from "@components/Input";
 import { DefaultLayout } from "@layouts/DefaultLayout";
 import { createGroup } from "@storage/group/create";
 
+import { AppError } from "@errors/AppError";
+import { Alert } from "react-native";
 import { Content, Icon } from "./styles";
 
 export function NewGroup() {
@@ -16,16 +18,22 @@ export function NewGroup() {
 
   async function handleCreateGroup() {
     try {
-      if(!group) return;
-      const parsedGroup = group.trim();
-
-      await createGroup(parsedGroup);
+      if (!group.trim().length) {
+        return Alert.alert("Novo Grupo", "O nome do grupo não pode ser vazio");
+      }
+      await createGroup(group);
 
       navigation.navigate("players", {
-        group: parsedGroup,
+        group,
       });
     } catch (error) {
-      console.log(error);
+      if (error instanceof AppError) {
+        Alert.alert("Novo Grupo", error.message);
+      } else {
+        Alert.alert("Novo Grupo", 'Não foi possível criar um novo grupo');
+        console.log(error)
+      }
+
     }
   }
 
