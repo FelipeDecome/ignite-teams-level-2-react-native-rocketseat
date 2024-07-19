@@ -29,8 +29,9 @@ export function Groups() {
     } catch (error) {
       console.log(error);
       Alert.alert("Jogadores", "Não foi possível carregar os grupos");
+    } finally {
+      setIsGroupsLoading(false);
     }
-    setIsGroupsLoading(false);
   }
 
   function handleOpenGroup(group: string) {
