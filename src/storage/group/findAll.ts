@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { STORAGE_KEYS } from "@storage/config";
 
 export async function findAllGroups(): Promise<string[]> {

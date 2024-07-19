@@ -1,10 +1,13 @@
-import { TextInputProps } from "react-native";
+import { ForwardedRef, forwardRef } from "react";
+import { TextInput, TextInputProps } from "react-native";
 import { Container } from "./styles";
 
 interface IInputProps extends TextInputProps {}
 
-export function Input({ ...rest }: IInputProps) {
+function BaseInput({ ...rest }: IInputProps, ref: ForwardedRef<TextInput>) {
   return (
-    <Container {...rest} />
+    <Container ref={ref} {...rest} />
   )
 }
+
+export const Input = forwardRef(BaseInput);
